@@ -28,7 +28,7 @@ android {
             apply plugin: 'maven'
             mavenDeployer {
                 pom.groupId = "com.ytx.android.library"
-                pom.version = "1.0.0"
+                pom.version = "1.1.0"
                 repository(url: mavenServer+mavenReleases) {
                     authentication(userName: repoUsername, password: repoPassword)
                 }

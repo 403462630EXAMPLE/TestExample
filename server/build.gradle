@@ -36,11 +36,6 @@ android {
     }
 }
 
-repositories {
-    mavenCentral()
-    maven { url 'http://maven.tiantong99.com:8081/nexus/content/repositories/releases/'}
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -39,6 +39,6 @@ dependencies {
     compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.1'
     apt 'com.hannesdorfmann.parcelableplease:processor:1.0.1'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.ytx.android.library:data:1.0.0'
-    compile 'com.ytx.android.library:tools:1.0.0'
+    compile 'com.ytx.android.library:data:1.+'
+    compile 'com.ytx.android.library:tools:1.+'
 }
