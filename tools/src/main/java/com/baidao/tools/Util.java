@@ -24,7 +24,7 @@ public class Util {
         if(UserHelper.getInstance(context).isLogin()){
             id = UserHelper.getInstance(context).getUser().getServerId();
         }else {
-            id = getAgentId(context, Server.getDefaultServer(context).serverId);
+            id = getAgentId(context, Server.getDefaultServer().serverId);
         }
         return id;
     }
@@ -38,7 +38,7 @@ public class Util {
     }
 
     public static Server getServer(Context context) {
-        return Server.from(context, getCompanyId(context));
+        return Server.from(getCompanyId(context));
     }
 
     public static void makeCompanyCall(Context context) {
@@ -54,13 +54,13 @@ public class Util {
     public static String getPhoneNumber(Context context) {
         String phoneNumber = getPhoneNumberOnline(context);
         if (TextUtils.isEmpty(phoneNumber)) {
-            phoneNumber = Server.from(context, Util.getCompanyId(context)).phoneNumber;
+            phoneNumber = Server.from(Util.getCompanyId(context)).phoneNumber;
         }
         return phoneNumber;
     }
 
     private static String getPhoneNumberOnline(Context context) {
-        Server server = Server.from(context, Util.getCompanyId(context));
+        Server server = Server.from(Util.getCompanyId(context));
         String phoneKey = String.format(KEY_PHONE_PATTERN, server.name);
         return MobclickAgent.getConfigParams(context, phoneKey);
     }

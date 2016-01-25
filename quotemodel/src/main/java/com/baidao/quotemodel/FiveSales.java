@@ -1,8 +1,9 @@
-package com.baidao.data;
+package com.baidao.quotemodel;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.baidao.data.Jsonable;
 import com.google.gson.Gson;
 import com.hannesdorfmann.parcelableplease.annotation.ParcelablePlease;
 
@@ -63,13 +64,13 @@ public class FiveSales implements Parcelable, Jsonable {
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            com.baidao.data.OrderParcelablePlease.writeToParcel(this, dest, flags);
+            com.baidao.quotemodel.OrderParcelablePlease.writeToParcel(this, dest, flags);
         }
 
         public static final Creator<Order> CREATOR = new Creator<Order>() {
             public Order createFromParcel(Parcel source) {
                 Order target = new Order();
-                com.baidao.data.OrderParcelablePlease.readFromParcel(target, source);
+                com.baidao.quotemodel.OrderParcelablePlease.readFromParcel(target, source);
                 return target;
             }
 

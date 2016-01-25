@@ -75,7 +75,7 @@ public class UserHelper {
                 return new User();
             }
             user = new Gson().fromJson(userJson, User.class);
-            user.setServerId(Server.getDefaultServer(context).serverId);
+            user.setServerId(Server.getDefaultServer().serverId);
         }
         return user;
     }

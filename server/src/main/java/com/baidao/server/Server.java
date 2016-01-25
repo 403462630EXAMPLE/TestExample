@@ -1,10 +1,5 @@
 package com.baidao.server;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import com.baidao.persistence.SharedPreferenceUtil;
-
 public enum Server {
     TT(1, "tt", "02195049"),
     TD(2, "td", "4008213988"),
@@ -19,38 +14,16 @@ public enum Server {
     public String phoneNumber;
 
     private static Server defaultServer;
-    public static final String DEFAULT_SERVER_KEY = "server.default.server";
 
-    public static void setDefaultServer(Context context, Server server) {
+    public static void setDefaultServer(Server server) {
         defaultServer = server;
-        saveToCache(context, server);
     }
 
-    private static void saveToCache(Context context, Server server) {
-        SharedPreferences sharedPreferences = SharedPreferenceUtil.getSharedPreference(context);
-        sharedPreferences.edit()
-                .putInt(DEFAULT_SERVER_KEY, server.serverId)
-                .commit();
-    }
-
-    public static Server getDefaultServer(Context context) {
-        if (defaultServer == null) {
-            defaultServer = getServerFromCache(context);
-        }
+    public static Server getDefaultServer() {
         if (defaultServer == null) {
             throw new IllegalStateException("@@@please set default server first@@@");
         }
         return defaultServer;
-    }
-
-    private static Server getServerFromCache(Context context) {
-        int serverId = SharedPreferenceUtil.getSharedPreference(context).getInt(DEFAULT_SERVER_KEY, -1);
-        for (Server server : values()) {
-            if (server.serverId == serverId) {
-                return server;
-            }
-        }
-        return null;
     }
 
     private Server(int serverId, String name, String phoneNumber) {
@@ -59,13 +32,13 @@ public enum Server {
         this.phoneNumber = phoneNumber;
     }
 
-    public static Server from(Context context, int serverId) {
+    public static Server from(int serverId) {
         for (Server server : values()) {
             if (server.serverId == serverId) {
                 return server;
             }
         }
-        return getServerFromCache(context);
+        return getDefaultServer();
     }
 
     public String getName() {
