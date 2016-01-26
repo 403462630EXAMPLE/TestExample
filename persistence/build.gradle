@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
 
+version="1.1.0"
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -26,7 +28,7 @@ android {
             apply plugin: 'maven'
             mavenDeployer {
                 pom.groupId = "com.ytx.android.library"
-                pom.version = "1.0.0"
+                pom.version = version
                 repository(url: mavenServer+mavenReleases) {
                     authentication(userName: repoUsername, password: repoPassword)
                 }

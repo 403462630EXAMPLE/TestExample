@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
 
+version="1.2.0"
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -21,7 +22,7 @@ android {
             apply plugin: 'maven'
             mavenDeployer {
                 pom.groupId = "com.ytx.android.library"
-                pom.version = "1.1.0"
+                pom.version = version
                 repository(url: mavenServer+mavenReleases) {
                     authentication(userName: repoUsername, password: repoPassword)
                 }
@@ -33,9 +34,9 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.ytx.android.library:data:1.+'
-    compile 'com.ytx.android.library:server:1.+'
-    compile 'com.ytx.android.library:persistence:1.+'
+    compile project(':data')
+    compile project(':server')
+    compile project(':persistence')
     compile 'com.google.guava:guava:18.0'
     compile 'joda-time:joda-time:2.6'
     compile 'com.squareup:otto:1.3.5'

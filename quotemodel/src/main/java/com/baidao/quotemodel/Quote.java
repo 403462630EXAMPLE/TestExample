@@ -3,7 +3,6 @@ package com.baidao.quotemodel;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.baidao.data.FiveSales;
 import com.baidao.data.Jsonable;
 import com.baidao.tools.BigDecimalUtil;
 import com.google.gson.Gson;
