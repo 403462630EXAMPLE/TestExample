@@ -67,7 +67,7 @@ public class QuoteUtil {
                 .commit();
     }
 
-    public static void saveSelectedCategory(Context context, Category newCategory) {
+    public static boolean saveSelectedCategory(Context context, Category newCategory) {
         List<Category> originCategoryList = new ArrayList<>();
         originCategoryList.addAll(getCustomCategories(context));
         boolean exist = false;
@@ -81,10 +81,10 @@ public class QuoteUtil {
         if (!exist) {
             originCategoryList.add(newCategory);
         }
-        saveCustomCategories(context, originCategoryList);
+        return saveCustomCategories(context, originCategoryList);
     }
 
-    public static void removeSelectedCategory(Context context, Category deletedCategory) {
+    public static boolean removeSelectedCategory(Context context, Category deletedCategory) {
         List<Category> originCategoryList = new ArrayList<>();
         originCategoryList.addAll(getCustomCategories(context));
 
@@ -99,7 +99,7 @@ public class QuoteUtil {
         if (position != -1) {
             originCategoryList.remove(deletedCategory);
         }
-        saveCustomCategories(context, originCategoryList);
+        return saveCustomCategories(context, originCategoryList);
     }
 
     private static Map<String, ArrayList<Category>>  objDefaultCategories = null;
@@ -157,44 +157,49 @@ public class QuoteUtil {
         return getDefaultCustomCategories(context, false);
     }
 
-    public static void syncCustomCategory(Context context) {
-        if (UserHelper.getInstance(context).isLogin()) {
-            String json = SharedPreferenceUtil.getSharedPreference(context).getString(KEY_USER_SELECTED_QUOTE_CATEGORIES, "");
-            if (!TextUtils.isEmpty(json)) {
-                List<Category> list = new Gson().fromJson(json, new TypeToken<ArrayList<Category>>() {
-                }.getType());
-                List<Category> categories = getCustomCategories(context);
-                if (categories == null || categories.size() == 0) {
-                    Log.i(TAG, "syncCustomCategory: DefaultCustomCategories is null");
-                    saveCustomCategories(context, list);
-                } else {
-                    int size = categories.size();
-                    if (size < 9) {
-                        List<Category> newCategories = Lists.newArrayList(categories);
-                        for (Category category1 : list) {
-                            boolean flag = false;
-                            for (Category category2 : categories) {
-                                if (category1.id.equals(category2.id)) {
-                                    flag = true;
-                                    break;
-                                }
-                            }
-                            if (!flag) {
-                                Log.i(TAG, "syncCustomCategory: add category id:" + category1.id);
-                                newCategories.add(category1);
-                                size ++;
-                            }
-                            if (size >= 9) {
-                                Log.i(TAG, "syncCustomCategory: size >= 9");
-                                break;
-                            }
+    public static boolean syncCustomCategory(Context context) {
+        if (!UserHelper.getInstance(context).isLogin()) {
+            return false;
+        }
+        String json = SharedPreferenceUtil.getSharedPreference(context).getString(KEY_USER_SELECTED_QUOTE_CATEGORIES, "");
+        if (TextUtils.isEmpty(json)) {
+            SharedPreferenceUtil.removeKey(context, KEY_USER_SELECTED_QUOTE_CATEGORIES);
+            return false;
+        }
+        List<Category> list = new Gson().fromJson(json, new TypeToken<ArrayList<Category>>() {
+        }.getType());
+        List<Category> categories = getCustomCategories(context);
+        boolean savedSuccess = false;
+        if (categories == null || categories.size() == 0) {
+            Log.i(TAG, "syncCustomCategory: DefaultCustomCategories is null");
+            savedSuccess = saveCustomCategories(context, list);
+        } else {
+            int size = categories.size();
+            if (size < 9) {
+                List<Category> newCategories = Lists.newArrayList(categories);
+                for (Category category1 : list) {
+                    boolean flag = false;
+                    for (Category category2 : categories) {
+                        if (category1.id.equals(category2.id)) {
+                            flag = true;
+                            break;
                         }
-                        saveCustomCategories(context, newCategories);
+                    }
+                    if (!flag) {
+                        Log.i(TAG, "syncCustomCategory: add category id:" + category1.id);
+                        newCategories.add(category1);
+                        size ++;
+                    }
+                    if (size >= 9) {
+                        Log.i(TAG, "syncCustomCategory: size >= 9");
+                        break;
                     }
                 }
+                savedSuccess = saveCustomCategories(context, newCategories);
             }
-            SharedPreferenceUtil.removeKey(context, KEY_USER_SELECTED_QUOTE_CATEGORIES);
         }
+        SharedPreferenceUtil.removeKey(context, KEY_USER_SELECTED_QUOTE_CATEGORIES);
+        return savedSuccess;
     }
 
     private static final String UNIT_OF_TEN_THOUSAND = "万";
