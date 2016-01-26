@@ -59,13 +59,12 @@ public class QuoteUtil {
                 }).toArray(String.class);
     }
 
-    private static void saveCustomCategories(Context context, List<Category> categories) {
-        SharedPreferenceUtil.getSharedPreference(context)
+    private static boolean saveCustomCategories(Context context, List<Category> categories) {
+        return SharedPreferenceUtil.getSharedPreference(context)
                 .edit()
                 .putString(KEY_USER_SELECTED_QUOTE_CATEGORIES + UserHelper.getInstance(context).getUser().getUsername(),
                         new Gson().toJson(categories))
                 .commit();
-//        BusProvider.getInstance().post(new HomeEvent.CustomQuoteChangeEvent()); //TODO
     }
 
     public static void saveSelectedCategory(Context context, Category newCategory) {

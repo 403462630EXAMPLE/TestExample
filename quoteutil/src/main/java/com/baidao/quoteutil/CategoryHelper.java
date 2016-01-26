@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by hexi on 15/1/27.
@@ -200,6 +201,27 @@ public class CategoryHelper {
         for (String id : ids) {
             if (categoryMap.containsKey(id)) {
                 result.add(categoryMap.get(id));
+            }
+        }
+        return result;
+    }
+
+    public static Category getCategoryByNickname(Context context, String nickname) {
+        Collection<Category> categories = getCategories(context).values();
+        for (Category category : categories) {
+            if (category.nickName.equals(nickname)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+    public static List<Category> getCategoryByNicknames(Context context, Set<String> nicknames) {
+        Collection<Category> categories = getCategories(context).values();
+        List<Category> result = Lists.newArrayList();
+        for (Category category : categories) {
+            if (nicknames.contains(category.nickName)) {
+                result.add(category);
             }
         }
         return result;

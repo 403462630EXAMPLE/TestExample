@@ -20,7 +20,7 @@ public class PermissionHelper {
             .put(Server.SSY.serverId, 6)
             .put(Server.BSY.serverId, 8)
             .put(Server.DX.serverId, 10)
-            .put(Server.JD.serverId, 1)//TODO
+            .put(Server.JD.serverId, 1)
             .build();
     private static final ImmutableMap<Integer, Integer> permissionIndexOfLogout = ImmutableMap.<Integer, Integer>builder()
             .put(Server.TT.serverId, 3)
@@ -29,7 +29,7 @@ public class PermissionHelper {
             .put(Server.SSY.serverId, 7)
             .put(Server.BSY.serverId, 9)
             .put(Server.DX.serverId, 11)
-            .put(Server.JD.serverId, 4)//TODO
+            .put(Server.JD.serverId, 4)
             .build();
 
 

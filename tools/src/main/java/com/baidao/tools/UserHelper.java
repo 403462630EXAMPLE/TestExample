@@ -175,9 +175,4 @@ public class UserHelper {
         int userType = getUser().getUserType();
         return userType >= 3;
     }
-
-    public boolean hasOpenAccount() {
-        // TODO should implement
-        return true;
-    }
 }
