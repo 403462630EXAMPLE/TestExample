@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 
-version="1.2.0"
+version="1.3.0"
 
 android {
     compileSdkVersion 21
@@ -41,6 +41,6 @@ dependencies {
     compile 'com.hannesdorfmann.parcelableplease:annotation:1.0.1'
     apt 'com.hannesdorfmann.parcelableplease:processor:1.0.1'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile project(':data')
-    compile project(':tools')
+    provided project(':data')
+    provided project(':tools')
 }

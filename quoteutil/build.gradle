@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version="1.5.0"
+version="1.6.0"
 
 android {
     compileSdkVersion 21
@@ -35,8 +35,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile project(':tools')
-    compile project(':server')
-    compile project(':persistence')
-    compile project(':quotemodel')
+    provided project(':tools')
+    provided project(':server')
+    provided project(':persistence')
+    provided project(':quotemodel')
 }

@@ -9,7 +9,7 @@ import android.text.TextUtils;
 
 import com.baidao.persistence.SharedPreferenceUtil;
 import com.baidao.server.Server;
-import com.umeng.analytics.MobclickAgent;
+import com.umeng.onlineconfig.OnlineConfigAgent;
 
 /**
  * Created by BurizaDo on 3/3/15.
@@ -62,7 +62,7 @@ public class Util {
     private static String getPhoneNumberOnline(Context context) {
         Server server = Server.from(Util.getCompanyId(context));
         String phoneKey = String.format(KEY_PHONE_PATTERN, server.name);
-        return MobclickAgent.getConfigParams(context, phoneKey);
+        return OnlineConfigAgent.getInstance().getConfigParams(context, phoneKey);
     }
 
     public static void setAgentId(Context context, int agentId) {
