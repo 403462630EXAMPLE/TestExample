@@ -75,7 +75,7 @@ Java_com_baidao_quotation_MessageProxy_parseCodeTableMessage(JNIEnv* env, jobjec
     message2 message;
     message.decode(data, length);//, MESSAGE::SECURITYLIST);
 
-    jclass cls = env->FindClass("com/baidao/quotation/Category");
+    jclass cls = env->FindClass("com/baidao/quotemodel/Category");
     jmethodID id = env->GetMethodID(cls, "<init>", "()V");
     jobject paramOut = env->NewObjectA(cls, id, 0);
 
@@ -218,7 +218,7 @@ Java_com_baidao_quotation_MessageProxy_parseSnapshot(JNIEnv* env, jobject jobj, 
         isNFXG = (strcmp(value, "NFXG") == 0);
     }
 
-    jclass cls = env->FindClass((isSGE ||  isNFXG) ? "com/baidao/quotation/SHGSnapshot" :  "com/baidao/quotation/Snapshot");
+    jclass cls = env->FindClass((isSGE ||  isNFXG) ? "com/baidao/quotemodel/SHGSnapshot" :  "com/baidao/quotemodel/Snapshot");
     jmethodID id = env->GetMethodID(cls, "<init>", "()V");
     jobject paramOut = env->NewObjectA(cls, id, 0);
 
@@ -434,7 +434,7 @@ Java_com_baidao_quotation_MessageProxy_parseQiankun(JNIEnv* env, jobject jobj, j
     long lValue = 0;
     bool isSGE = false;
 
-    jclass cls = env->FindClass("com/baidao/quotation/Qiankun");
+    jclass cls = env->FindClass("com/baidao/quotemodel/Qiankun");
     jmethodID id = env->GetMethodID(cls, "<init>", "()V");
     jobject paramOut = env->NewObjectA(cls, id, 0);
 
@@ -498,7 +498,7 @@ Java_com_baidao_quotation_MessageProxy_parseQiankun(JNIEnv* env, jobject jobj, j
         int outLength = 0;
         double dValue = 0;
 
-        jclass cls = env->FindClass("com/baidao/quotation/CategoryNotice");
+        jclass cls = env->FindClass("com/baidao/quotemodel/CategoryNotice");
         jmethodID id = env->GetMethodID(cls, "<init>", "()V");
         jobject result = env->NewObjectA(cls, id, 0);
 
