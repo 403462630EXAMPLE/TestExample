@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="radio_button_checked_color">#242830</color>
+    <color name="radio_button_unchecked_color">#31353d</color>
+    <color name="radio_button_border_color">#242830</color>
+    <color name="radio_button_unchecked_text_color">#ffffff</color>
+    <color name="radio_button_checked_text_color">#999999</color>
+</resources>

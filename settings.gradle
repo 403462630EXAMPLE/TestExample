@@ -1,1 +1,1 @@
-include ':app', ':server', ':data', ':tools', ':persistence', ':quotemodel', ':quoteutil', ':QuotationProtocol'
+include ':app', ':server', ':data', ':tools', ':persistence', ':quotemodel', ':quoteutil', ':QuotationProtocol', 'segmentedButton'
