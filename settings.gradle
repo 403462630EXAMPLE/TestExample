@@ -1,1 +1,1 @@
-include ':app', ':server', ':data', ':tools', ':persistence', ':quotemodel', ':quoteutil', ':QuotationProtocol', ':segmentedButton', ':toggleButton', ':Imagefileselector', ':UninstalledObserver'
+include ':app', ':server', ':data', ':tools', ':persistence', ':quotemodel', ':quoteutil', ':QuotationProtocol', ':segmentedButton', ':toggleButton', ':Imagefileselector', ':UninstalledObserver', ':domain'
