@@ -1,4 +1,4 @@
-package com.baidao.ytxmobile.jsbridge;
+package com.baidao.jsbridge;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,7 +1,4 @@
-package com.baidao.ytxmobile.jsbridge;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+package com.baidao.jsbridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
