@@ -7,7 +7,7 @@ public enum Server {
     SSY(8, "ssy", "02136129099"),//深石油
     BSY(9, "bsy", "4001858003"),//北石油
     DX(10, "dx", "400-1611-003"),
-    JD(11, "jd", "02195049");
+    JD(11, "jd", "400-1677-003");
 
     public int serverId;
     public String name;
