@@ -6,12 +6,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.baidao.persistence.SharedPreferenceUtil;
 import com.baidao.quotemodel.Category;
 import com.baidao.quotemodel.Quote;
 import com.baidao.server.Server;
 import com.baidao.tools.BigDecimalUtil;
 import com.baidao.tools.FileUtil;
+import com.baidao.tools.SharedPreferenceUtil;
 import com.baidao.tools.UserHelper;
 import com.baidao.tools.Util;
 import com.google.common.base.Function;
