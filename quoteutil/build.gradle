@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-version="1.6.0"
+version="1.7.0"
 
 android {
     compileSdkVersion 21
@@ -38,6 +38,5 @@ dependencies {
     provided project(':data')
     provided project(':tools')
     provided project(':server')
-    provided project(':persistence')
     provided project(':quotemodel')
 }

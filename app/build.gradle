@@ -24,7 +24,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.+'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile project(':persistence')
     compile project(':data')
     compile project(':server')
     compile project(':tools')

@@ -1,4 +1,4 @@
-package com.baidao.persistence;
+package com.baidao.tools;
 
 import android.content.Context;
 import android.content.SharedPreferences;

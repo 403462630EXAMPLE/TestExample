@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.PowerManager;
 import android.text.TextUtils;
 
-import com.baidao.persistence.SharedPreferenceUtil;
 import com.baidao.server.Server;
 import com.umeng.onlineconfig.OnlineConfigAgent;
 
