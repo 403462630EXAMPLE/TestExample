@@ -30,7 +30,10 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 
     public interface BridgeWebViewListener {
         public void onPageStarted(WebView view, String url, Bitmap favicon);
+
         public void onPageFinished(WebView view, String url);
+
+        public void onError(WebView view, int errorCode, String description, String failingUrl);
     }
 
     private String appVersion;
@@ -177,6 +180,13 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
             }
         }
 
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            if (bridgeWebViewListener != null) {
+                bridgeWebViewListener.onError(view, errorCode, description, failingUrl);
+            }
+        }
     }
 
     @Override
