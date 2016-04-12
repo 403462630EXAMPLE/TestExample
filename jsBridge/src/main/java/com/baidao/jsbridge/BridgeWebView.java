@@ -28,6 +28,11 @@ import java.util.Map;
 @SuppressLint("SetJavaScriptEnabled")
 public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 
+    public interface BridgeWebViewListener {
+        public void onPageStarted(WebView view, String url, Bitmap favicon);
+        public void onPageFinished(WebView view, String url);
+    }
+
     private String appVersion;
     private static final String TAG = "BridgeWebView";
 
@@ -38,6 +43,12 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 
     List<Message> startupMessage = new ArrayList<Message>();
     long uniqueId = 0;
+
+    private BridgeWebViewListener bridgeWebViewListener;
+
+    public void setBridgeWebViewListener(BridgeWebViewListener bridgeWebViewListener) {
+        this.bridgeWebViewListener = bridgeWebViewListener;
+    }
 
     public BridgeWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -140,11 +151,18 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+            if (bridgeWebViewListener != null) {
+                bridgeWebViewListener.onPageStarted(view, url, favicon);
+            }
         }
 
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+
+            if (bridgeWebViewListener != null) {
+                bridgeWebViewListener.onPageFinished(view, url);
+            }
 
             if (toLoadJs != null) {
                 BridgeUtil.webViewLoadLocalJs(view, toLoadJs);
