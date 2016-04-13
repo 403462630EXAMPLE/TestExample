@@ -21,7 +21,7 @@ android {
             apply plugin: 'maven'
             mavenDeployer {
                 pom.groupId = "com.ytx.android.library"
-                pom.version = "1.2.0"
+                pom.version = "1.0.0"
                 repository(url: mavenServer + mavenReleases) {
                     authentication(userName: repoUsername, password: repoPassword)
                 }
@@ -31,7 +31,9 @@ android {
 }
 
 dependencies {
-    rootProject.dependenciesMethod rootProject.ext.trackerDps, { type, library, key ->
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    rootProject.dependenciesMethod rootProject.ext.toolsDps, { type, library, key ->
         if (type == 'compile') {
             compile library
         } else if (type == 'debugCompile') {

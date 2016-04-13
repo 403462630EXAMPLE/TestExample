@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 18
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -23,7 +23,7 @@ android {
             mavenDeployer {
                 pom.groupId = "com.ytx.android.library"
                 pom.version = "1.0.0"
-                repository(url: mavenServer+mavenReleases) {
+                repository(url: mavenServer + mavenReleases) {
                     authentication(userName: repoUsername, password: repoPassword)
                 }
             }
@@ -32,7 +32,13 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.2'
-    compile 'com.github.chrisbanes.photoview:library:1.2.3'
+    rootProject.dependenciesMethod rootProject.ext.imagefileselectorDps, { type, library, key ->
+        if (type == 'compile') {
+            compile library
+        } else if (type == 'debugCompile') {
+            debugCompile library
+        } else if (type == 'testCompile') {
+            testCompile library
+        }
+    }
 }
