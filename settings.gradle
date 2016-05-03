@@ -1,1 +1,1 @@
-include ':app', ':server', ':data', ':tools', ':quotemodel', ':quoteutil', ':QuotationProtocol', ':segmentedButton', ':toggleButton', ':Imagefileselector', ':UninstalledObserver', ':domain', ':Notification', ':jsBridge', ':Tracker', ':updateApp', ':socketConnection'
+include ':app'
